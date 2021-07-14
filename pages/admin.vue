@@ -6,7 +6,6 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                        
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Pickup Address</th>
@@ -20,7 +19,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="(tran,id) in orders" :key="id">
-                    
+                        
                         <td>{{tran.name}}</td>
                         <td>{{tran.email}}</td>
                         <td>{{tran.pickup}}</td>
