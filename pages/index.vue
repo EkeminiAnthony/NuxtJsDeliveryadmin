@@ -22,7 +22,11 @@
                             <label class="form-check-label" for="exampleCheck1">Remember me</label>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary">LOG IN</button>
+                        <!-- <button type="submit" class="btn btn-primary">LOG IN</button> -->
+                         <button type="submit" class="btn btn-primary">
+                            <span v-if="notloading">LOG IN</span>
+                            <div v-else><loader/></div>
+                        </button>
         </form>
             </div>
             </div>
@@ -32,10 +36,11 @@
 
 <script>
 import firebase from 'firebase'
+import loader from '@/components/loader'
 
 export default {
     components:{
-        firebase
+        firebase, loader
     },
     data(){
         return{
@@ -43,7 +48,8 @@ export default {
             
             email:'',
             password:''
-          } 
+          },
+          notloading : true
             
         }
     },
@@ -55,17 +61,20 @@ export default {
     methods: {
         
         login(){
+            this.notloading = false;
             firebase.auth().signInWithEmailAndPassword(this.auth.email, this.auth.password)
                 .then((userCredential) => {
+                    this.$router.push('/admin');
                     // Signed in
                     var user = userCredential.user;
                     console.log(user)
-                    this.$router.push('/admin');
+                     this.notloading = true;
                     // ...
                 })
                 .catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
+                    this.notloading = true;
                     console.log(errorCode)
                     console.log(errorMessage)
                 });

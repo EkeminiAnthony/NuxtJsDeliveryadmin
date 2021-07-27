@@ -29,8 +29,8 @@
                         <td>{{tran.pickup}}</td>
                         <td>{{tran.dropoff}}</td>
                         <td>{{tran.type}}</td>
-                        <td>{{tran.description}}</td>
-                        
+                        <td>{{tran.description}}</td>     
+                             
                         <td>{{tran.date}}</td>
                         <td>{{tran.time}}</td>
                         <td><font-awesome-icon :icon="['fas', 'trash-alt']" @click.prevent="deletePost(id)" /></td>
